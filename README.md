@@ -1,2 +1,3 @@
-# test-technique
-Ceci est un test !
+# test-technique &copy; &trade; 
+Ceci est un test technique !
+
