@@ -80,7 +80,7 @@ public class Stack {
 			return true;
 		} else {
 			Deque<Integer> reversedDeque = doReverse(new ArrayDeque<Integer>(this.deque));
-			return deque.stream().allMatch((Integer i) -> i == reversedDeque.pop());
+			return deque.stream().allMatch((Integer i) -> i.equals(reversedDeque.pop()));
 		}
 	}
 
