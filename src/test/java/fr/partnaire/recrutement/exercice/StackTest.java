@@ -136,6 +136,17 @@ public class StackTest {
 	}
 
 	@Test
+	public void canBePalindrome_impair_shoulb_be_ok() {
+
+		Stack stack = new Stack();
+		stack.push(4);
+		stack.push(4);
+		stack.push(1);
+
+		Assertions.assertThat(stack.canBePalindrome()).isTrue();
+	}
+
+	@Test
 	public void canBePalindrome_shoulb_be_ko() {
 
 		Stack stack = new Stack();

@@ -56,8 +56,8 @@ public class Stack {
 	}
 
 	private Deque<Integer> doReverse(Deque<Integer> pile) {
-		Deque<Integer> reversedDeque = new ArrayDeque<>(this.deque.size());
-		this.deque.stream().forEach(reversedDeque::push);
+		Deque<Integer> reversedDeque = new ArrayDeque<>(pile.size());
+		pile.stream().forEach(reversedDeque::push);
 		return reversedDeque;
 	}
 
@@ -70,6 +70,10 @@ public class Stack {
 		this.deque = new ArrayDeque<Integer>(list);
 	}
 
+	/**
+	 * 
+	 * @return true si palindrome
+	 */
 	public boolean isPalindrome() {
 
 		if (deque.isEmpty()) {
@@ -80,6 +84,10 @@ public class Stack {
 		}
 	}
 
+	/**
+	 * 
+	 * @return true si peut etre un palindrome
+	 */
 	public boolean canBePalindrome() {
 
 		if (isPalindrome()) {
