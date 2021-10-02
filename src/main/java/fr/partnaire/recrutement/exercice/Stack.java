@@ -4,10 +4,10 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Deque;
+import java.util.HashSet;
 import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
 
 /**
  * Classe Stack de gestion d'une pile d'entiers
@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
  */
 public class Stack {
 
-	private static Logger LOGGER = LoggerFactory.getLogger(Stack.class);
+	private static java.util.logging.Logger LOGGER = Logger.getLogger(Stack.class.getName());
 
 	/** la pile */
 	private Deque<Integer> deque = new ArrayDeque<>();
@@ -76,11 +76,11 @@ public class Stack {
 	 */
 	public boolean isPalindrome() {
 
-		if (deque.isEmpty()) {
+		if (this.deque.isEmpty()) {
 			return true;
 		} else {
 			Deque<Integer> reversedDeque = doReverse(new ArrayDeque<Integer>(this.deque));
-			return deque.stream().allMatch((Integer i) -> i.equals(reversedDeque.pop()));
+			return this.deque.stream().allMatch((Integer i) -> i.equals(reversedDeque.pop()));
 		}
 	}
 
@@ -90,30 +90,18 @@ public class Stack {
 	 */
 	public boolean canBePalindrome() {
 
-		if (isPalindrome()) {
-			return true;
-		} else {
-			boolean canBe = true;
-			boolean casUniquePresent = false;
-			Deque<Integer> copyDeque = new ArrayDeque<Integer>(this.deque);
-			for (Integer i : deque) {
+		// S'il y a plus d'1 élément qui apparait en nombre impair alors ce n'est pas un palindrome potentiel
+		Predicate<Long> nombreImpair = (Long count) -> count % 2 == 1;
 
-				if (copyDeque.isEmpty())
-					return true;
+		long nbElementsEnNombreImpair = new HashSet<>(this.deque).stream()
+				.map(this::countElement)
+				.filter(nombreImpair)
+				.count();
+		return nbElementsEnNombreImpair <= 1;
 
-				copyDeque.pop();
+	}
 
-				if (!copyDeque.contains(i)) {
-					if (!casUniquePresent) {
-						casUniquePresent = true;
-					} else {
-						return false;
-					}
-				} else {
-					copyDeque.remove(i);
-				}
-			}
-			return canBe;
-		}
+	private long countElement(Integer i) {
+		return this.deque.stream().filter(i::equals).count();
 	}
 }

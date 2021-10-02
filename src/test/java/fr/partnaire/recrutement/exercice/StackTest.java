@@ -76,7 +76,7 @@ public class StackTest {
 	}
 
 	@Test
-	public void isPalindrome_shoulb_be_ok() {
+	public void isPalindrome_should_be_ok() {
 
 		Stack stack = new Stack();
 		stack.push(4);
@@ -88,7 +88,7 @@ public class StackTest {
 	}
 
 	@Test
-	public void isPalindrome_all_same_shoulb_be_ok() {
+	public void isPalindrome_all_same_should_be_ok() {
 
 		Stack stack = new Stack();
 		stack.push(78);
@@ -99,7 +99,7 @@ public class StackTest {
 	}
 
 	@Test
-	public void isPalindrome_impair_shoulb_be_ok() {
+	public void isPalindrome_impair_should_be_ok() {
 
 		Stack stack = new Stack();
 		stack.push(0);
@@ -112,7 +112,7 @@ public class StackTest {
 	}
 
 	@Test
-	public void isPalindrome_shoulb_be_false() {
+	public void isPalindrome_should_be_false() {
 
 		Stack stack = new Stack();
 		stack.push(1);
@@ -124,7 +124,7 @@ public class StackTest {
 	}
 
 	@Test
-	public void canBePalindrome_shoulb_be_ok() {
+	public void canBePalindrome_should_be_ok() {
 
 		Stack stack = new Stack();
 		stack.push(4);
@@ -136,7 +136,7 @@ public class StackTest {
 	}
 
 	@Test
-	public void canBePalindrome_impair_shoulb_be_ok() {
+	public void canBePalindrome_impair_should_be_ok() {
 
 		Stack stack = new Stack();
 		stack.push(4);
@@ -147,7 +147,7 @@ public class StackTest {
 	}
 
 	@Test
-	public void canBePalindrome_shoulb_be_ko() {
+	public void canBePalindrome_should_be_ko() {
 
 		Stack stack = new Stack();
 		stack.push(4);
@@ -157,4 +157,64 @@ public class StackTest {
 
 		Assertions.assertThat(stack.canBePalindrome()).isFalse();
 	}
+
+	@Test
+	public void canBePalindrome_one_element_should_be_ok() {
+
+		Stack stack = new Stack();
+		stack.push(4);
+
+		Assertions.assertThat(stack.canBePalindrome()).isTrue();
+	}
+
+	@Test
+	public void canBePalindrome_empty_element_should_be_ok() {
+
+		Stack stack = new Stack();
+
+		Assertions.assertThat(stack.canBePalindrome()).isTrue();
+	}
+
+	@Test
+	public void canBePalindrome_all_same_element_should_be_ok() {
+
+		Stack stack = new Stack();
+		stack.push(4);
+		stack.push(4);
+		stack.push(4);
+		stack.push(4);
+
+		Assertions.assertThat(stack.canBePalindrome()).isTrue();
+	}
+
+	@Test
+	public void canBePalindrome_all_different_should_be_ko() {
+
+		Stack stack = new Stack();
+		stack.push(1);
+		stack.push(2);
+		stack.push(3);
+		stack.push(4);
+
+		Assertions.assertThat(stack.canBePalindrome()).isFalse();
+	}
+
+	/**
+	 * TU qui manquait pour trouver le bug du canBePalindrome
+	 */
+	@Test
+	public void canBePalindrome_successive_element_should_be_ok() {
+
+		Stack stack = new Stack();
+		stack.push(0);
+		stack.push(0);
+		stack.push(0);
+		stack.push(0);
+		stack.push(1);
+		stack.push(1);
+		stack.push(1);
+
+		Assertions.assertThat(stack.canBePalindrome()).isTrue();
+	}
+
 }
